@@ -1,7 +1,11 @@
 const express = require('express');
 const productRouter = require('./routes/products');
+const cors = require('cors');
 
 const app = express();
+
+//Setup Server
+app.use( cors() );
 
 app.get("/", (req, res) =>{
     res.send("Welcome to Ecommerce APIs")
