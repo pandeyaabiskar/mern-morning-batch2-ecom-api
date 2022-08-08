@@ -1,15 +1,24 @@
 const express = require('express');
 const productRouter = require('./routes/products');
 const cors = require('cors');
+const productData = require('./data/products.json')
 
 const app = express();
 
 //Setup Server
 app.use( cors() );
+app.use(express.static(__dirname + '/public'))
+
+//Setup Server Side Rendering
+app.set('view engine', 'hbs');
 
 app.get("/", (req, res) =>{
-    res.send("Welcome to Ecommerce APIs")
+    res.render('index', {productData});
 })
+
+// app.get('/css/index.css', (req, res) => {
+//     res.sendFile(__dirname + '/public/css/index.css');
+// })
 
 app.use("/api/products", productRouter)
 
