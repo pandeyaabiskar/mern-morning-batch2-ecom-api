@@ -4,7 +4,7 @@ const cors = require("cors");
 const productData = require("./data/products.json");
 const hbs = require("hbs");
 const connectDatabase = require('./database/connection');
-
+const {logger, validateUser} = require('./middlewares/auth')
 
 const app = express();
 
@@ -22,17 +22,6 @@ app.set("views", __dirname + "/templates");
 //Setup HBS
 hbs.registerPartials(__dirname + "/templates/partials");
 
-//Middlewares
-const logger = (req, res, next) => {
-    req.greet = "Hi"
-    console.log("This is a logger middleware");
-    next();
-}
-
-const validateUser = (req, res, next) => {
-    console.log("User is validated");
-    next();
-}
 
 // app.use("/", logger);
 
