@@ -6,14 +6,24 @@ const ratingSchema = mongoose.Schema({
 })
 
 const productSchema = mongoose.Schema({
-    title: String,
-    price: Number,
+    title: {
+        type : String,
+        required: true,
+        unique: true,
+        maxlength : [20, "Sorry bro, too long!"],
+        minlength: 10,
+    },
+    price: {
+        type: Number,
+        min: 1,
+        max: 1000
+    },
     description: String,
     category: String,
     image: String,
     rating: ratingSchema
 })
 
-const ProductModel = mongoose.Model("product", productSchema);
+const ProductModel = mongoose.model("product", productSchema);
 
 module.exports = ProductModel;

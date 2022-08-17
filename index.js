@@ -14,6 +14,7 @@ connectDatabase();
 //Setup Server
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
+app.use(express.json());
 
 //Setup Server Side Rendering
 app.set("view engine", "hbs");
